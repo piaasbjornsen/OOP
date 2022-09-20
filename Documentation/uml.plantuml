@@ -1,0 +1,154 @@
+@startuml
+
+title Hyttapp
+
+    class FileIO {
+        + readObjectFromFile()
+        + writeObjectToFile()
+        - createFile()
+    }
+
+
+    class HyttappApp {
+        {static} + main()
+        + start()
+    }
+
+
+    class HyttappController {
+        - clock : Timeline
+        - appClock : Text
+        - depDate : Text
+        - depDatePicker : DatePicker
+        - depLoc : Text
+        - depLocInput : TextField
+        - depTime : Text
+        - depTimeInput : TextField
+        - duration : Text
+        - errorDialogue : Text
+        - expensesInput : TextField
+        - participantInput : TextField
+        - participantListView : ListView<String>
+        - retDate : Text
+        - retDatePicker : DatePicker
+        - retTime : Text
+        - retTimeInput : TextField
+        - saveFilePath : String
+        - sharedExpenses : Text
+        - timeToDeparture : Text
+        - totalExpenses : Text
+        - tripListView : ListView<String>
+        - tripNameInput : TextField
+        - tripViewListener : ChangeListener<String>
+        - welcomeInfo : TextFlow
+        - welcomeInfoInput : TextArea
+        - welcomeMessage : Text
+        ~ initialize()
+        - addParticipant()
+        - addTrip()
+        - editTripDetails()
+        - editWelcomeInfo()
+        - getSelectedParticipant()
+        - getSelectedTrip()
+        - removeParticipant()
+        - removeTrip()
+        - saveState()
+        - selectFirstTrip()
+        - setExpenses()
+        - setupListViewListener()
+        - startCounters()
+        - updateEditInfo()
+        - updateOverview()
+        - updateParticipantsListView()
+        - updateTripListView()
+    }
+
+
+    interface IOInterface {
+        {abstract} + readObjectFromFile()
+        {abstract} + writeObjectToFile()
+    }
+
+
+    class Location {
+        - location : String
+        + Location()
+        + setLocation()
+        + toString()
+    }
+
+
+    class Participant {
+        - name : String
+        + Participant()
+        + getName()
+    }
+
+
+    class Trip {
+        - expenses : int
+        - info : String
+        - participantList : Collection<Participant>
+        - tripName : String
+        + Trip()
+        + addParticipant()
+        + getExpenses()
+        + getInfo()
+        + getParticipantList()
+        + getSharedExpenses()
+        + getTripName()
+        + removeParticipant()
+        + setExpenses()
+        + setInfo()
+        + tripDetails()
+    }
+
+
+    class TripContainer {
+        - trips : List<Trip>
+        + addTrip()
+        + getTrip()
+        + getTripNames()
+        + getTrips()
+        + removeTrip()
+        + setTrips()
+        + TripContainer()
+    }
+
+
+    class TripDetails {
+        - departureDate : LocalDate
+        - departureTime : LocalTime
+        - returnDate : LocalDate
+        - returnTime : LocalTime
+        + TripDetails()
+        + durationToString()
+        + getDepartureDate()
+        + getDepartureLoc()
+        + getDepartureTime()
+        + getDuration()
+        + getReturnDate()
+        + getReturnTime()
+        + getTimeUntil()
+        + setDepartureDate()
+        + setDepartureLoc()
+        + setDepartureTime()
+        + setReturnDate()
+        + setReturnTime()
+    }
+
+
+  FileIO .up.|> IOInterface
+  HyttappApp -up-|> javafx.application.Application
+  HyttappController o-- IOInterface : fileHandler
+  HyttappController o-- TripContainer : trips
+  Location .up.|> java.io.Serializable
+  Participant .up.|> java.io.Serializable
+  Trip .up.|> java.io.Serializable
+  Trip o-- TripDetails : tripDetails
+  TripContainer .up.|> java.io.Serializable
+  TripDetails .up.|> java.io.Serializable
+  TripDetails o-- Location : departureLoc
+
+
+@enduml

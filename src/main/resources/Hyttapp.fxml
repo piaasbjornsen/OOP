@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="HyttappController">
+    <children>
+      <TabPane layoutX="107.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="495.0" prefWidth="560.0" rotateGraphic="true" style="-fx-border-style: solid;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Velkommen">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <AnchorPane layoutX="-2.0" layoutY="14.0" prefHeight="196.0" prefWidth="560.0" style="-fx-background-color: white; -fx-border-style: solid;">
+                           <children>
+                              <Text layoutX="13.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Turplanlegger" />
+                              <Text fx:id="welcomeMessage" layoutX="36.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hei, velkommen til hyttapp!" />
+                              <TextFlow fx:id="welcomeInfo" layoutX="36.0" layoutY="63.0" prefHeight="118.0" prefWidth="200.0" />
+                              <Text layoutX="385.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tid til avreise:" />
+                              <Text fx:id="appClock" layoutX="429.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klokka" />
+                              <Text fx:id="timeToDeparture" layoutX="385.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tid" />
+                              <Text fx:id="totalExpenses" layoutX="236.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total utgift" />
+                              <Text fx:id="sharedExpenses" layoutX="236.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delt utgift" />
+                              <Text layoutX="236.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total utgift:" />
+                              <Text layoutX="236.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delt utgift:" />
+                           </children></AnchorPane>
+                        <AnchorPane layoutY="195.0" prefHeight="240.0" prefWidth="247.0" style="-fx-background-color: white; -fx-border-style: solid;">
+                           <children>
+                              <ListView fx:id="participantListView" layoutX="24.0" layoutY="30.0" prefHeight="165.0" prefWidth="200.0" />
+                              <Text layoutX="24.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deltagere" />
+                              <TextField fx:id="participantInput" layoutX="24.0" layoutY="205.0" prefHeight="25.0" prefWidth="109.0" />
+                              <Button layoutX="135.0" layoutY="205.0" mnemonicParsing="false" onAction="#addParticipant" prefHeight="25.0" prefWidth="60.0" text="Legg til" />
+                              <Button layoutX="197.0" layoutY="205.0" mnemonicParsing="false" onAction="#removeParticipant" prefHeight="25.0" prefWidth="28.0" text="-" />
+                           </children></AnchorPane>
+                        <AnchorPane layoutX="246.0" layoutY="195.0" prefHeight="240.0" prefWidth="313.0" style="-fx-border-style: solid;">
+                           <children>
+                              <Text layoutX="10.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oppsummert" />
+                              <AnchorPane layoutX="14.0" layoutY="55.0" prefHeight="77.0" prefWidth="287.0">
+                                 <children>
+                                    <Text layoutX="16.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Avreise" />
+                                    <Text fx:id="depDate" layoutX="86.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" />
+                                    <Text fx:id="depTime" layoutX="86.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klokka" />
+                                    <Text fx:id="depLoc" layoutX="86.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lokasjon" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="14.0" layoutY="132.0" prefHeight="77.0" prefWidth="287.0">
+                                 <children>
+                                    <Text layoutX="16.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hjemreise" />
+                                    <Text fx:id="retDate" layoutX="86.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" />
+                                    <Text fx:id="retTime" layoutX="86.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klokka" />
+                                    <Text fx:id="duration" layoutX="86.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lengde" />
+                                 </children>
+                              </AnchorPane>
+                           </children></AnchorPane>
+                        <Text fx:id="errorDialogue" fill="RED" layoutX="13.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="529.869140625" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Endre info">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea fx:id="welcomeInfoInput" layoutX="30.0" layoutY="41.0" prefHeight="144.0" prefWidth="255.0" style="-fx-wrap-text: true;" text="Her kan du planlegge turen din!" />
+                        <Button layoutX="248.0" layoutY="191.0" mnemonicParsing="false" onAction="#editWelcomeInfo" text="Sett" />
+                        <Text layoutX="30.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endre velkomstmelding" />
+                        <AnchorPane layoutX="18.0" layoutY="315.0" prefHeight="128.0" prefWidth="521.0">
+                           <children>
+                              <Text layoutX="6.0" layoutY="17.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Avreise" />
+                              <DatePicker fx:id="depDatePicker" layoutX="65.0" layoutY="30.0" prefHeight="25.0" prefWidth="100.0" promptText="11/11/2021" />
+                              <Text layoutX="24.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" />
+                              <Text layoutX="14.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lokasjon" />
+                              <Button layoutX="432.0" layoutY="99.0" mnemonicParsing="false" onAction="#editTripDetails" prefHeight="25.0" prefWidth="49.0" text="Sett" />
+                              <TextField fx:id="depLocInput" layoutX="65.0" layoutY="97.0" prefHeight="25.0" prefWidth="101.0" promptText="Trondheim" />
+                              <Text layoutX="19.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klokka" />
+                              <TextField fx:id="depTimeInput" layoutX="65.0" layoutY="64.0" prefHeight="25.0" prefWidth="100.0" promptText="21:00" />
+                              <Text layoutX="234.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hjemreise" />
+                              <DatePicker fx:id="retDatePicker" layoutX="300.0" layoutY="30.0" prefHeight="25.0" prefWidth="100.0" promptText="11/11/2021" />
+                              <Text layoutX="259.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" />
+                              <Text layoutX="255.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Klokka" />
+                              <TextField fx:id="retTimeInput" layoutX="300.0" layoutY="64.0" prefHeight="25.0" prefWidth="100.0" promptText="21:00" />
+                           </children>
+                        </AnchorPane>
+                        <TextField fx:id="expensesInput" layoutX="321.0" layoutY="41.0" prefHeight="11.0" prefWidth="149.0" />
+                        <Text layoutX="321.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Totale utgifter" />
+                        <Button layoutX="432.0" layoutY="73.0" mnemonicParsing="false" onAction="#setExpenses" text="Sett" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="Pakkeliste">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <ListView fx:id="tripListView" layoutX="-1.0" layoutY="29.0" prefHeight="465.0" prefWidth="109.0" />
+      <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dine turer" />
+      <Button layoutX="17.0" layoutY="364.0" mnemonicParsing="false" onAction="#addTrip" prefHeight="25.0" prefWidth="28.0" text="+" />
+      <TextField fx:id="tripNameInput" layoutX="17.0" layoutY="334.0" prefHeight="25.0" prefWidth="74.0" />
+      <Button layoutX="63.0" layoutY="364.0" mnemonicParsing="false" onAction="#removeTrip" prefHeight="25.0" prefWidth="28.0" text="-" />
+   </children>
+</AnchorPane>
